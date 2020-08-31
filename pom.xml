@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>de.oliverlietz</groupId>
+    <artifactId>parent</artifactId>
+    <version>1</version>
+    <relativePath/>
+  </parent>
+
+  <artifactId>sfmiasaaem-package</artifactId>
+  <version>1-SNAPSHOT</version>
+  <packaging>content-package</packaging>
+
+  <name>Scanning for Malware in Apache Sling and Adobe Experience Manager – Package for AEM 6.5.5</name>
+  <description>This package contains all bundles and sample configurations to run Apache Sling Clam on AEM 6.5.5.</description>
+  <url>https://github.com/oliverlietz/sfmiasaaem-package</url>
+
+  <scm>
+    <connection>scm:git:git://github.com/oliverlietz/sfmiasaaem-package.git</connection>
+    <developerConnection>scm:git:git@github.com:/oliverlietz/sfmiasaaem-package.git</developerConnection>
+    <url>https://github.com/oliverlietz/sfmiasaaem-package/tree/master</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.jackrabbit</groupId>
+        <artifactId>filevault-package-maven-plugin</artifactId>
+        <version>1.1.4</version>
+        <extensions>true</extensions>
+        <configuration>
+          <name>sfmiasaaem</name>
+          <group>oliverlietz</group>
+          <packageType>container</packageType>
+          <filters>
+            <filter>
+              <root>/apps/oliverlietz/sfmiasaaem</root>
+            </filter>
+          </filters>
+          <validatorsSettings>
+            <jackrabbit-filter>
+              <options>
+                <validRoots>/apps/oliverlietz</validRoots>
+              </options>
+            </jackrabbit-filter>
+          </validatorsSettings>
+          <embeddedTarget>/apps/oliverlietz/sfmiasaaem/install</embeddedTarget>
+          <embeddeds>
+            <!-- Apache Sling -->
+            <embedded>
+              <groupId>org.apache.sling</groupId>
+              <artifactId>org.apache.sling.clam</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.apache.sling</groupId>
+              <artifactId>org.apache.sling.commons.clam</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.apache.sling</groupId>
+              <artifactId>org.apache.sling.commons.crypto</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.apache.sling</groupId>
+              <artifactId>org.apache.sling.commons.messaging</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.apache.sling</groupId>
+              <artifactId>org.apache.sling.commons.messaging.mail</artifactId>
+              <type>jar</type>
+            </embedded>
+            <!-- Sling Commons Crypto dependency -->
+            <embedded>
+              <groupId>org.apache.servicemix.bundles</groupId>
+              <artifactId>org.apache.servicemix.bundles.jasypt</artifactId>
+              <type>jar</type>
+            </embedded>
+            <!-- Sling Clam dependencies (optional, for sending mails) -->
+            <embedded>
+              <groupId>org.apache.servicemix.bundles</groupId>
+              <artifactId>org.apache.servicemix.bundles.thymeleaf</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.attoparser</groupId>
+              <artifactId>attoparser</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.unbescape</groupId>
+              <artifactId>unbescape</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.apache.servicemix.bundles</groupId>
+              <artifactId>org.apache.servicemix.bundles.ognl</artifactId>
+              <type>jar</type>
+            </embedded>
+            <embedded>
+              <groupId>org.javassist</groupId>
+              <artifactId>javassist</artifactId>
+              <type>jar</type>
+            </embedded>
+          </embeddeds>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <!-- Apache Sling -->
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.clam</artifactId>
+      <version>1.1.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.commons.clam</artifactId>
+      <version>2.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.commons.crypto</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.commons.messaging</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.commons.messaging.mail</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <!-- Sling Commons Crypto dependency -->
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.jasypt</artifactId>
+      <version>1.9.3_1</version>
+    </dependency>
+    <!-- Sling Clam dependencies (optional, for sending mails) -->
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.thymeleaf</artifactId>
+      <version>3.0.11.RELEASE_1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.attoparser</groupId>
+      <artifactId>attoparser</artifactId>
+      <version>2.0.5.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.unbescape</groupId>
+      <artifactId>unbescape</artifactId>
+      <version>1.1.6.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.ognl</artifactId>
+      <version>3.2.1_1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>3.27.0-GA</version>
+    </dependency>
+  </dependencies>
+
+</project>
