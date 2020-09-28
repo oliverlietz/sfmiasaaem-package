@@ -1,6 +1,6 @@
 # Scanning for Malware in Apache Sling and Adobe Experience Manager – Package for AEM 6.5.5
 
-This package (*SfMiASaAEM*) contains all bundles and sample configurations to run [Apache Sling Clam](https://github.com/apache/sling-org-apache-sling-clam) on AEM 6.5.5.
+This companion package (*SfMiASaAEM*) for the [adaptTo() 2020 session](https://adapt.to/2020/en/schedule/scanning-for-malware-in-apache-sling-and-aem.html) contains all bundles and sample configurations to run [Apache Sling Clam](https://github.com/apache/sling-org-apache-sling-clam) on AEM 6.5.5.
 
 ## Docker (for Clam AV)
 
